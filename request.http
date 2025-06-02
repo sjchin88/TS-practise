@@ -6,15 +6,14 @@ GET {{url}}/hello/
 GET {{url}}/employees/
 ###
 
-GET {{url}}/employees/d2a83616c5f6eab1da92
+GET {{url}}/employees/98be64d0e0d8c96e08ec
 ###
 
 POST {{url}}/employees/
 Content-Type: application/json
 
 {
-    "name": "John",
+    "name": "JohnWick",
     "position": "Manager",
-    "salary":50000,
-    "other": "stuff"
+    "salary":51000
 }

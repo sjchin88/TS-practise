@@ -1,5 +1,6 @@
 import { Router, json } from "express";
 import * as handlers from "./Employee.handler";
+import { validateAsEmployee } from "./ZodValidator";
 
 const employeesRouter = Router();
 
@@ -10,6 +11,7 @@ employeesRouter.get("/", handlers.getAll);
 
 employeesRouter.get("/:id", handlers.getById);
 
-employeesRouter.post("/", handlers.addEmployee);
+// The position of validateAsEmployee is how we add the middleware
+employeesRouter.post("/", validateAsEmployee, handlers.addEmployee);
 
 export default employeesRouter;

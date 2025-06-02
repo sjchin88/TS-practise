@@ -1,4 +1,4 @@
-import express from "express";
+import express, { NextFunction, Request, Response } from "express";
 import employeesRouter from "./api/empl/Employee.route";
 
 //Specify port used
@@ -18,6 +18,14 @@ export class Server {
     this.app.use("/employees", employeesRouter);
 
     this.app.listen(port, () => {
+      //this prints the error in the console, rather than in the response!
+      this.app.use(
+        (err: Error, req: Request, res: Response, next: NextFunction) => {
+          console.error(err.stack);
+          res.send(err.message);
+          next();
+        }
+      );
       console.log("Listening on port " + port);
     });
   }
