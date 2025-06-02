@@ -1,4 +1,4 @@
-import { SomeDb } from "../data/someDb";
+import { SomeDb } from "../data/SomeDb";
 import { Employee } from "./Employee.model";
 
 export class EmployeeDataAccess {

@@ -6,6 +6,9 @@ GET {{url}}/hello/
 GET {{url}}/employees/
 ###
 
+GET {{url}}/reports/salaries
+###
+
 GET {{url}}/employees/98be64d0e0d8c96e08ec
 ###
 
@@ -13,7 +16,7 @@ POST {{url}}/employees/
 Content-Type: application/json
 
 {
-    "name": "JohnWick",
+    "name": "Johnathan",
     "position": "Manager",
-    "salary":51000
+    "salary":50000
 }
