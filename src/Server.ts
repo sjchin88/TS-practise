@@ -1,4 +1,4 @@
-import express, { Request, Response } from "express";
+import express from "express";
 import employeesRouter from "./api/empl/Employee.route";
 
 //Specify port used
