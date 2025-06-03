@@ -17,16 +17,66 @@ describe("Utils test suite", () => {
 
   // To run this test only use only
   // it.only
-  it.only("should return info for valid string", () => {
+  // it.only("should return info for valid string", () => {
+  //   const actual = getStringInfo("My-String");
+  //   // toBe is for string
+  //   expect(actual.lowerCase).toBe("my-string");
+  //   // toEqual is for object
+  //   expect(actual.extraInfo).toEqual({});
+
+  //   expect(actual.characters.length).toBe(9);
+  //   expect(actual.characters).toHaveLength(9);
+
+  //   expect(actual.characters).toEqual([
+  //     "M",
+  //     "y",
+  //     "-",
+  //     "S",
+  //     "t",
+  //     "r",
+  //     "i",
+  //     "n",
+  //     "g",
+  //   ]);
+  //   expect(actual.characters).toContain<string>("M");
+  //   // one way to check if we are not sure of elements order in return array
+  //   expect(actual.characters).toEqual(
+  //     expect.arrayContaining(["S", "t", "r", "i", "n", "g", "M", "y", "-"])
+  //   );
+
+  //   expect(actual.extraInfo).not.toBe(undefined);
+  //   expect(actual.extraInfo).not.toBeUndefined();
+  //   expect(actual.extraInfo).toBeDefined();
+  //   expect(actual.extraInfo).toBeTruthy();
+  // });
+  describe("ToUpperCase examples", () => {
+    it.each([
+      { input: "abc", expected: "ABC" },
+      { input: "My-String", expected: "MY-STRING" },
+      { input: "def", expected: "DEF" },
+      // can use this line '$input toUpperCase should be $expected' without the inner function
+    ])("$input toUpperCase should be $expected", ({ input, expected }) => {
+      const actual = toUpperCase(input);
+      expect(actual).toBe(expected);
+    });
+  });
+});
+
+describe("getStringInfo for arg My-String should", () => {
+  test("return right length", () => {
     const actual = getStringInfo("My-String");
-    // toBe is for string
-    expect(actual.lowerCase).toBe("my-string");
-    // toEqual is for object
-    expect(actual.extraInfo).toEqual({});
-
-    expect(actual.characters.length).toBe(9);
     expect(actual.characters).toHaveLength(9);
-
+  });
+  test("return right lower case", () => {
+    const actual = getStringInfo("My-String");
+    expect(actual.lowerCase).toBe("my-string");
+  });
+  test("return right upper case", () => {
+    const actual = getStringInfo("My-String");
+    expect(actual.upperCase).toBe("MY-STRING");
+  });
+  test("return right characters", () => {
+    const actual = getStringInfo("My-String");
     expect(actual.characters).toEqual([
       "M",
       "y",
@@ -39,14 +89,17 @@ describe("Utils test suite", () => {
       "g",
     ]);
     expect(actual.characters).toContain<string>("M");
-    // one way to check if we are not sure of elements order in return array
     expect(actual.characters).toEqual(
       expect.arrayContaining(["S", "t", "r", "i", "n", "g", "M", "y", "-"])
     );
-
-    expect(actual.extraInfo).not.toBe(undefined);
-    expect(actual.extraInfo).not.toBeUndefined();
+  });
+  test("return defined extra info", () => {
+    const actual = getStringInfo("My-String");
     expect(actual.extraInfo).toBeDefined();
-    expect(actual.extraInfo).toBeTruthy();
+  });
+
+  test("return right extra info", () => {
+    const actual = getStringInfo("My-String");
+    expect(actual.extraInfo).toEqual({});
   });
 });
