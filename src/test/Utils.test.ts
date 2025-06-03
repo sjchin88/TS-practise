@@ -2,7 +2,7 @@ import { getStringInfo, StringUtils, toUpperCase } from "../app/Utils";
 
 // describe can group different tests together
 describe("Utils test suite", () => {
-  describe.only("StringUtils tests", () => {
+  describe("StringUtils tests", () => {
     let sut: StringUtils;
 
     beforeEach(() => {
@@ -20,6 +20,34 @@ describe("Utils test suite", () => {
 
       expect(actual).toBe("ABC");
       console.log("Actual test");
+    });
+
+    // First way to check for error,
+    it("Should throw error on invalid argument - function", () => {
+      function expectError() {
+        const actual = sut.toUpperCase("");
+      }
+      expect(expectError).toThrow();
+      expect(expectError).toThrowError("Invalid argument!");
+    });
+
+    // Second way - directly use an arrow function
+    it("Should throw error on invalid argument - arrow function", () => {
+      expect(() => {
+        sut.toUpperCase("");
+      }).toThrow();
+    });
+
+    // Third way - try-catch block with done callback
+    it("Should throw error on invalid argument - try catch block", (done) => {
+      try {
+        sut.toUpperCase("");
+        done("GetStringInfo should throw error for invalid arg!");
+      } catch (error) {
+        expect(error).toBeInstanceOf(Error);
+        expect(error).toHaveProperty("message", "Invalid argument!");
+        done();
+      }
     });
   });
 
