@@ -1,39 +1,23 @@
-import { useState } from 'react'
-import './App.css'
-import Message from './components/Message'
+import ListComponent from './components/ListComponent'
 
 function App() {
-  const dudes = ['a', 'b', 'c']
-  const languages = ['C++', 'Java', 'Python']
-  const [selectedItem, setSelectedItem] = useState(0)
-  const handleclick = (language:string) => {
-    alert(`${language} was clicked!`)
-  }
-  return (
-    <>
-      <h1>Hello World!</h1>
-      <Message/>
-      {/* Illustration for list*/}
-      <ul>
-        {dudes.map((dude, index) => (
-          <li key={index}>{dude}</li>
-        ))}
-      </ul>
-      <ul>
-        {languages.map((language, index) => (
-          <li 
-            onClick={() => setSelectedItem(index)} 
-            className={selectedItem === index ? 'py-2 px-3 bg-gray-800 text-white' : 'py-2 px-3'}
-            key={index}
-          >{language}
-          </li>
-        ))}
-      </ul>
-      {/* Illustration for conditional rendering*/}
-      {/* {languages.length === 0 ? <p>No languages</p> : null} */}
-
-    </>
-  )
+    const items = ['JavaScript', 'PHP', 'Python', 'Swift']
+    const frameworks = ['Laravel', 'Ruby on Rails', 'Django']
+    const handleOnSelectItem = (item:string) => {
+      alert(item + ' was selected.') 
+    }
+    return (
+        <>
+            <div className="flex flex-col">
+                <ListComponent items={items} onSelectItem={handleOnSelectItem}>
+                  <h2>Programming 2Language</h2>
+                </ListComponent>
+                <ListComponent items={frameworks} onSelectItem={handleOnSelectItem}>
+                  <h2>Framework</h2>
+                </ListComponent>
+            </div>
+        </>
+    )
 }
 
 export default App
